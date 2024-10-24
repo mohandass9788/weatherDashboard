@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="weather-heading">
+    <h1>Weather Report</h1>
+  </div>
+  <div class="search-bar">
+    <div class="input-container">
+      <img
+        src="assets/images/search.png"
+        alt="Filter Icon"
+        class="filter-icon"
+      />
+      <input
+        type="text"
+        placeholder="Enter city name"
+        (keyup.enter)="searchWeather()"
+        [(ngModel)]="cityName"
+      />
+    </div>
+  </div>
+
+  <div class="recent-searches" *ngIf="recentSearches().length">
+    <h3>Recent Searches</h3>
+    <div class="flex flex-wrap gap-2">
+      <p-chip
+        *ngFor="let city of recentSearches()"
+        [label]="city"
+        (click)="searchCity(city)"
+        [style]="{ cursor: 'pointer' }"
+      ></p-chip>
+    </div>
+  </div>
+
+  <div *ngIf="weatherData()">
+    <div class="weather-info">
+      <h1>{{ weatherData()!.name | titlecase }}</h1>
+      <div class="temperature">
+        <img
+          [src]="getWeatherIcon(weatherData()!.weather[0].main)"
+          alt="weather icon"
+          class="weather-icon"
+        />
+        <span>{{ weatherData()!.weather[0].description | titlecase }}</span>
+      </div>
+      <div class="weather-data">
+        <app-weather-card
+          *ngFor="
+            let data of [
+              {
+                icon: 'assets/images/hot.png',
+                value: weatherData()!.main.temp + '°C'
+              },
+              {
+                icon: 'assets/images/wind.png',
+                value: weatherData()!.wind.speed + ' m/s'
+              },
+              {
+                icon: 'assets/images/humidity.png',
+                value: weatherData()!.main.humidity + '%'
+              }
+            ]
+          "
+          [icon]="data.icon"
+          [value]="data.value"
+        ></app-weather-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
