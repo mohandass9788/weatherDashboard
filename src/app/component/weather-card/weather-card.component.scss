@@ -1,6 +1,6 @@
 .card {
   width: 150px;
-  height: 75px;
+  height: auto;
   padding: 10px 15px;
   border: solid 1px #c4bfbf;
   border-radius: 10px;
@@ -8,6 +8,11 @@
   align-items: center;
   justify-content: space-evenly;
   background-color: #e6f5e1;
+  .temperature {
+    span {
+      margin-right: 10px;
+    }
+  }
   span {
     font-size: 16px;
     font-weight: 900;

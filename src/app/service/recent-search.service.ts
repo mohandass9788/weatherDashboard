@@ -16,10 +16,11 @@ export class RecentSearchesService {
   }
 
   addSearch(city: string) {
+
     const searches = [city, ...this.recentSearches()
       .filter(s => s !== city)]
       .slice(0, this.MAX_SEARCHES);
-
+    console.log('Adding', this.recentSearches(), city, searches);
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(searches));
     this.recentSearches.set(searches);
   }

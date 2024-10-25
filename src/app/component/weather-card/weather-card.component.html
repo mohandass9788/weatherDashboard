@@ -1,4 +1,17 @@
-<div class="card">
+<!-- <div class="card">
   <img [src]="icon" alt="weather icon" class="weather-icon" />
   <span>{{ value }}</span>
+</div> -->
+
+<div class="card">
+  <img [src]="icon" alt="weather icon" class="weather-icon" />
+
+  <div class="temperature">
+    @if(isCelsius){
+    <span>{{ value | degreeToF : checked }} </span>
+    <p-inputSwitch [(ngModel)]="checked" />
+    }@else {
+    <span>{{ value }}</span>
+    }
+  </div>
 </div>

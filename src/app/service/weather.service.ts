@@ -45,4 +45,7 @@ export class WeatherService {
     }
     return throwError(() => errorMessage);
   }
+  celsiusToFahrenheit(celsius: number): number {
+    return (celsius * 9 / 5) + 32;
+  }
 }
